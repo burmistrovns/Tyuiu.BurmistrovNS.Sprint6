@@ -1,79 +1,73 @@
 ﻿using Tyuiu.BurmistrovNS.Sprint6.Task4.V21.Lib;
-namespace Tyuiu.BurmistrovNS.Sprint6.Task4.V21
+namespace Tyuiu.BurmistrovNS.Sprint6.Task4.V21;
 {
     public partial class FormMain : Form
+{
+    public FormMain()
     {
-        DataService ds = new DataService();
-        public FormMain()
+        InitializeComponent();
+    }
+    DataService ds = new DataService();
+    private void buttonDone_SVV_Click(object sender, EventArgs e)
+    {
+        try
         {
-            InitializeComponent();
-        }
-        private void buttonReference_IPG_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Таск 4 выполнил студент группы ИСТНб-25-1 Бурмистров Николай Сергеевич ", "Справка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+            int startStep = Convert.ToInt32(textBoxStart_SVV.Text);
+            int stopStep = Convert.ToInt32(textBoxStop_SVV.Text);
 
-        private void buttonSave_IPG_Click(object sender, EventArgs e)
-        {
-            try
+            int len = ds.GetMassFunction(startStep, stopStep).Length;
+
+            double[] valueArray;
+            valueArray = new double[len];
+
+            valueArray = ds.GetMassFunction(startStep, stopStep);
+
+            this.chartFunction_SVV.ChartAreas[0].AxisX.Title = "Ось X";
+            this.chartFunction_SVV.ChartAreas[0].AxisY.Title = "Ось Y";
+
+            textBoxResult_SVV.Text = "";
+            chartFunction_SVV.Series[0].Points.Clear();
+            for (int i = 0; i <= len - 1; i++)
             {
-                string path = $@"{Directory.GetCurrentDirectory()}\OutPutFileTask4V21.txt";
-                File.WriteAllText(path, textBoxResult_IPG.Text);
-
-                DialogResult dialogResult = MessageBox.Show(this, $"Ôàéë {path} ñîõðàí¸í óñïåøíî!\n Îòêðûòü åãî?", "Ñîîáùåíèå", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-                if (dialogResult == DialogResult.Yes)
-                {
-                    System.Diagnostics.Process.Start(path);
-                    System.Diagnostics.Process txt = new System.Diagnostics.Process();
-                    txt.StartInfo.FileName = "Notepad.exe";
-                    txt.StartInfo.Arguments = path;
-                    txt.Start();
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Ñáîé ïðè ñîõðàíåíèè ôàéëà", "Îøèáêà", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.chartFunction_SVV.Series[0].Points.AddXY(startStep, valueArray[i]);
+                textBoxResult_SVV.AppendText(valueArray[i] + Environment.NewLine);
+                startStep++;
             }
         }
-
-        private void buttonDone_IPG_Click(object sender, EventArgs e)
+        catch
         {
-            try
-            {
-                int startStep = Convert.ToInt32(textBoxStart_IPG.Text);
-                int stopStep = Convert.ToInt32(textBoxEnd_IPG.Text);
-
-                int len = ds.GetMassFunction(startStep, stopStep).Length;
-
-                double[] valueArray = new double[len];
-
-                valueArray = ds.GetMassFunction(startStep, stopStep);
-
-                this.chartFunction_IPG.ChartAreas[0].AxisX.Title = "Îñü X";
-                this.chartFunction_IPG.ChartAreas[0].AxisY.Title = "Îñü Y";
-
-                textBoxResult_IPG.Text = "";
-
-                chartFunction_IPG.Series[0].Points.Clear();
-                for (int i = 0; i < len; i++, startStep++)
-                {
-                    this.chartFunction_IPG.Series[0].Points.AddXY(startStep, valueArray[i]);
-                    textBoxResult_IPG.AppendText(valueArray[i] + Environment.NewLine);
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Ââåäåíû íåâåðíûå äàííûå", "Îøèáêà", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void textBoxStartStep_IPG_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar <= 47 || e.KeyChar >= 58) && (e.KeyChar != ',') && (e.KeyChar != 8) && (e.KeyChar != '-'))
-            {
-                e.Handled = true;
-            }
+            MessageBox.Show("Введены неверные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
+
+
+    private void buttonSave_SVV_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            string path = $@"{Directory.GetCurrentDirectory()}\OutPutFileTask4V21.txt";
+            File.WriteAllText(path, textBoxResult_SVV.Text);
+
+            DialogResult dialogResult = MessageBox.Show("Файл " + path + " сохранён успешно!\nОткрыть его в блокноте?", "Сообщение", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                System.Diagnostics.Process txt = new System.Diagnostics.Process();
+                txt.StartInfo.FileName = "notepad.exe";
+                txt.StartInfo.Arguments = path;
+                txt.Start();
+            }
+        }
+        catch
+        {
+            MessageBox.Show("Сбой при сохранении файла", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
+    private void buttonHelp_SVV_Click(object sender, EventArgs e)
+    {
+        MessageBox.Show("Таск 4 выполнила студентка группы ИСТНб-23-1 Шананина Валерия Викторовна", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+    }
 }
+}
+

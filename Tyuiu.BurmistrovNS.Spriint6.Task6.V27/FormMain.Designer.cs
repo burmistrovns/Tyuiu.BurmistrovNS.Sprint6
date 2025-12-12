@@ -28,28 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain_BNS));
             panelUp_BNS = new Panel();
-            panelLeft_BNS = new Panel();
-            panelRight_BNS = new Panel();
-            splitter1 = new Splitter();
-            groupBox1 = new GroupBox();
-            groupBox2 = new GroupBox();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            buttonHelp = new Button();
+            buttonDone = new Button();
+            buttonOpenFile = new Button();
             groupBox_BNS = new GroupBox();
             textBox3 = new TextBox();
+            panelLeft_BNS = new Panel();
+            groupBoxIn = new GroupBox();
+            textBoxIn = new TextBox();
+            panelRight_BNS = new Panel();
+            groupBox2 = new GroupBox();
+            textBoxResult = new TextBox();
+            splitter1 = new Splitter();
+            toolTip1 = new ToolTip(components);
+            openFilePath = new OpenFileDialog();
+            openFileDialogTask = new OpenFileDialog();
             panelUp_BNS.SuspendLayout();
-            panelLeft_BNS.SuspendLayout();
-            panelRight_BNS.SuspendLayout();
-            groupBox1.SuspendLayout();
-            groupBox2.SuspendLayout();
             groupBox_BNS.SuspendLayout();
+            panelLeft_BNS.SuspendLayout();
+            groupBoxIn.SuspendLayout();
+            panelRight_BNS.SuspendLayout();
+            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // panelUp_BNS
             // 
             panelUp_BNS.BackColor = SystemColors.ActiveBorder;
+            panelUp_BNS.Controls.Add(buttonHelp);
+            panelUp_BNS.Controls.Add(buttonDone);
+            panelUp_BNS.Controls.Add(buttonOpenFile);
             panelUp_BNS.Controls.Add(groupBox_BNS);
             panelUp_BNS.Dock = DockStyle.Top;
             panelUp_BNS.Location = new Point(0, 0);
@@ -57,15 +67,90 @@
             panelUp_BNS.Size = new Size(782, 127);
             panelUp_BNS.TabIndex = 0;
             // 
+            // buttonHelp
+            // 
+            buttonHelp.Location = new Point(668, 3);
+            buttonHelp.Name = "buttonHelp";
+            buttonHelp.Size = new Size(102, 35);
+            buttonHelp.TabIndex = 3;
+            buttonHelp.Text = "Help";
+            buttonHelp.UseVisualStyleBackColor = true;
+            // 
+            // buttonDone
+            // 
+            buttonDone.Location = new Point(106, 2);
+            buttonDone.Name = "buttonDone";
+            buttonDone.Size = new Size(109, 32);
+            buttonDone.TabIndex = 2;
+            buttonDone.Text = "Начать";
+            buttonDone.UseVisualStyleBackColor = true;
+            buttonDone.Click += buttonDone_Click;
+            // 
+            // buttonOpenFile
+            // 
+            buttonOpenFile.Location = new Point(6, 0);
+            buttonOpenFile.Name = "buttonOpenFile";
+            buttonOpenFile.Size = new Size(56, 36);
+            buttonOpenFile.TabIndex = 1;
+            buttonOpenFile.Text = "файл";
+            toolTip1.SetToolTip(buttonOpenFile, "Выберите файл\r\n\r\nВыберите нужный файл длля обработки\r\n");
+            buttonOpenFile.UseVisualStyleBackColor = true;
+            buttonOpenFile.Click += buttonOpenFile_Click;
+            // 
+            // groupBox_BNS
+            // 
+            groupBox_BNS.Controls.Add(textBox3);
+            groupBox_BNS.Dock = DockStyle.Bottom;
+            groupBox_BNS.Location = new Point(0, 33);
+            groupBox_BNS.Name = "groupBox_BNS";
+            groupBox_BNS.Size = new Size(782, 94);
+            groupBox_BNS.TabIndex = 0;
+            groupBox_BNS.TabStop = false;
+            groupBox_BNS.Text = "Условие";
+            // 
+            // textBox3
+            // 
+            textBox3.BackColor = SystemColors.ActiveBorder;
+            textBox3.Dock = DockStyle.Fill;
+            textBox3.Location = new Point(3, 23);
+            textBox3.Multiline = true;
+            textBox3.Name = "textBox3";
+            textBox3.ReadOnly = true;
+            textBox3.Size = new Size(776, 68);
+            textBox3.TabIndex = 0;
+            textBox3.Text = resources.GetString("textBox3.Text");
+            // 
             // panelLeft_BNS
             // 
             panelLeft_BNS.BackColor = SystemColors.ButtonFace;
-            panelLeft_BNS.Controls.Add(groupBox1);
+            panelLeft_BNS.Controls.Add(groupBoxIn);
             panelLeft_BNS.Dock = DockStyle.Left;
             panelLeft_BNS.Location = new Point(0, 127);
             panelLeft_BNS.Name = "panelLeft_BNS";
             panelLeft_BNS.Size = new Size(380, 436);
             panelLeft_BNS.TabIndex = 1;
+            // 
+            // groupBoxIn
+            // 
+            groupBoxIn.Controls.Add(textBoxIn);
+            groupBoxIn.Dock = DockStyle.Fill;
+            groupBoxIn.Location = new Point(0, 0);
+            groupBoxIn.Name = "groupBoxIn";
+            groupBoxIn.Size = new Size(380, 436);
+            groupBoxIn.TabIndex = 0;
+            groupBoxIn.TabStop = false;
+            groupBoxIn.Text = "Ввод Данных";
+            // 
+            // textBoxIn
+            // 
+            textBoxIn.Dock = DockStyle.Fill;
+            textBoxIn.Location = new Point(3, 23);
+            textBoxIn.Multiline = true;
+            textBoxIn.Name = "textBoxIn";
+            textBoxIn.ScrollBars = ScrollBars.Vertical;
+            textBoxIn.Size = new Size(374, 410);
+            textBoxIn.TabIndex = 0;
+            textBoxIn.TextChanged += textBoxIn_TextChanged;
             // 
             // panelRight_BNS
             // 
@@ -76,29 +161,9 @@
             panelRight_BNS.Size = new Size(402, 436);
             panelRight_BNS.TabIndex = 2;
             // 
-            // splitter1
-            // 
-            splitter1.Location = new Point(380, 127);
-            splitter1.Name = "splitter1";
-            splitter1.Size = new Size(4, 436);
-            splitter1.TabIndex = 3;
-            splitter1.TabStop = false;
-            // 
-            // groupBox1
-            // 
-            groupBox1.Controls.Add(textBox1);
-            groupBox1.Dock = DockStyle.Fill;
-            groupBox1.Location = new Point(0, 0);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(380, 436);
-            groupBox1.TabIndex = 0;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Ввод Данных";
-            groupBox1.Enter += this.groupBox1_Enter;
-            // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(textBox2);
+            groupBox2.Controls.Add(textBoxResult);
             groupBox2.Dock = DockStyle.Fill;
             groupBox2.Location = new Point(0, 0);
             groupBox2.Name = "groupBox2";
@@ -107,46 +172,35 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Вывод Данных";
             // 
-            // textBox1
+            // textBoxResult
             // 
-            textBox1.Dock = DockStyle.Fill;
-            textBox1.Location = new Point(3, 23);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.ScrollBars = ScrollBars.Vertical;
-            textBox1.Size = new Size(374, 410);
-            textBox1.TabIndex = 0;
+            textBoxResult.Dock = DockStyle.Fill;
+            textBoxResult.Location = new Point(3, 23);
+            textBoxResult.Multiline = true;
+            textBoxResult.Name = "textBoxResult";
+            textBoxResult.ScrollBars = ScrollBars.Vertical;
+            textBoxResult.Size = new Size(396, 410);
+            textBoxResult.TabIndex = 0;
             // 
-            // textBox2
+            // splitter1
             // 
-            textBox2.Dock = DockStyle.Fill;
-            textBox2.Location = new Point(3, 23);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.ScrollBars = ScrollBars.Vertical;
-            textBox2.Size = new Size(396, 410);
-            textBox2.TabIndex = 0;
+            splitter1.Location = new Point(380, 127);
+            splitter1.Name = "splitter1";
+            splitter1.Size = new Size(4, 436);
+            splitter1.TabIndex = 3;
+            splitter1.TabStop = false;
             // 
-            // groupBox_BNS
+            // toolTip1
             // 
-            groupBox_BNS.Controls.Add(textBox3);
-            groupBox_BNS.Location = new Point(3, 33);
-            groupBox_BNS.Name = "groupBox_BNS";
-            groupBox_BNS.Size = new Size(773, 94);
-            groupBox_BNS.TabIndex = 0;
-            groupBox_BNS.TabStop = false;
-            groupBox_BNS.Text = "Условие";
+            toolTip1.ToolTipIcon = ToolTipIcon.Info;
             // 
-            // textBox3
+            // openFilePath
             // 
-            textBox3.BackColor = SystemColors.ActiveBorder;
-            textBox3.Location = new Point(6, 26);
-            textBox3.Multiline = true;
-            textBox3.Name = "textBox3";
-            textBox3.ReadOnly = true;
-            textBox3.Size = new Size(758, 64);
-            textBox3.TabIndex = 0;
-            textBox3.Text = resources.GetString("textBox3.Text");
+            openFilePath.FileName = "openFileDialog1";
+            // 
+            // openFileDialogTask
+            // 
+            openFileDialogTask.FileName = "openFileDialog1";
             // 
             // FormMain_BNS
             // 
@@ -161,16 +215,15 @@
             Name = "FormMain_BNS";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Спринт 6 | Таск  4 | Вариант 27 | Бурмистров Н.С. ";
-            Load += this.FormMain_BNS_Load;
             panelUp_BNS.ResumeLayout(false);
-            panelLeft_BNS.ResumeLayout(false);
-            panelRight_BNS.ResumeLayout(false);
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
             groupBox_BNS.ResumeLayout(false);
             groupBox_BNS.PerformLayout();
+            panelLeft_BNS.ResumeLayout(false);
+            groupBoxIn.ResumeLayout(false);
+            groupBoxIn.PerformLayout();
+            panelRight_BNS.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -180,11 +233,17 @@
         private Panel panelLeft_BNS;
         private Panel panelRight_BNS;
         private Splitter splitter1;
-        private GroupBox groupBox1;
+        private GroupBox groupBoxIn;
         private GroupBox groupBox2;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox textBoxIn;
+        private TextBox textBoxResult;
         private GroupBox groupBox_BNS;
         private TextBox textBox3;
+        private Button buttonOpenFile;
+        private ToolTip toolTip1;
+        private Button buttonHelp;
+        private Button buttonDone;
+        private OpenFileDialog openFilePath;
+        private OpenFileDialog openFileDialogTask;
     }
 }

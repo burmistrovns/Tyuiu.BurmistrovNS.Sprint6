@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Tyuiu.BurmistrovNS.Spriint6.Task6.V27.Properties {
+namespace Tyuiu.BurmistrovNS.Sprint6.Task6.V27.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Tyuiu.BurmistrovNS.Spriint6.Task6.V27.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Tyuiu.BurmistrovNS.Spriint6.Task6.V27.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Tyuiu.BurmistrovNS.Sprint6.Task6.V27.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

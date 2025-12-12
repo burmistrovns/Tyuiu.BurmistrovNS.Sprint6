@@ -9,14 +9,10 @@ namespace Tyuiu.BurmistrovNS.Sprint6.Task6.V27.Test
         public void TestMethod1()
         {
             DataService ds = new DataService();
-            string path = Path.Combine("C:", "DataSprint6", "InPutDataFileTask6V27.txt");
-
+            string path = @"C:\Users\Николай\source\repos\Tyuiu.BurmistrovNS.Sprint6\InPutFileTask6V27.txt";
             string res = ds.CollectTextFromFile(path);
-
-            string wait = "Hello";
-
+            string wait = "UpGwjzkBH OHcr KgepHrKCHa";
             Assert.AreEqual(wait, res);
-
         }
     }
 }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain_BNS));
             panelUp_BNS = new Panel();
             buttonHelp = new Button();
@@ -41,10 +40,8 @@
             textBoxIn = new TextBox();
             panelRight_BNS = new Panel();
             groupBox2 = new GroupBox();
-            textBoxResult = new TextBox();
+            textBoxOut = new TextBox();
             splitter1 = new Splitter();
-            toolTip1 = new ToolTip(components);
-            openFilePath = new OpenFileDialog();
             openFileDialogTask = new OpenFileDialog();
             panelUp_BNS.SuspendLayout();
             groupBox_BNS.SuspendLayout();
@@ -75,6 +72,7 @@
             buttonHelp.TabIndex = 3;
             buttonHelp.Text = "Help";
             buttonHelp.UseVisualStyleBackColor = true;
+            buttonHelp.Click += buttonHelp_Click;
             // 
             // buttonDone
             // 
@@ -93,7 +91,6 @@
             buttonOpenFile.Size = new Size(56, 36);
             buttonOpenFile.TabIndex = 1;
             buttonOpenFile.Text = "файл";
-            toolTip1.SetToolTip(buttonOpenFile, "Выберите файл\r\n\r\nВыберите нужный файл длля обработки\r\n");
             buttonOpenFile.UseVisualStyleBackColor = true;
             buttonOpenFile.Click += buttonOpenFile_Click;
             // 
@@ -163,7 +160,7 @@
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(textBoxResult);
+            groupBox2.Controls.Add(textBoxOut);
             groupBox2.Dock = DockStyle.Fill;
             groupBox2.Location = new Point(0, 0);
             groupBox2.Name = "groupBox2";
@@ -172,15 +169,15 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Вывод Данных";
             // 
-            // textBoxResult
+            // textBoxOut
             // 
-            textBoxResult.Dock = DockStyle.Fill;
-            textBoxResult.Location = new Point(3, 23);
-            textBoxResult.Multiline = true;
-            textBoxResult.Name = "textBoxResult";
-            textBoxResult.ScrollBars = ScrollBars.Vertical;
-            textBoxResult.Size = new Size(396, 410);
-            textBoxResult.TabIndex = 0;
+            textBoxOut.Dock = DockStyle.Fill;
+            textBoxOut.Location = new Point(3, 23);
+            textBoxOut.Multiline = true;
+            textBoxOut.Name = "textBoxOut";
+            textBoxOut.ScrollBars = ScrollBars.Vertical;
+            textBoxOut.Size = new Size(396, 410);
+            textBoxOut.TabIndex = 0;
             // 
             // splitter1
             // 
@@ -189,14 +186,6 @@
             splitter1.Size = new Size(4, 436);
             splitter1.TabIndex = 3;
             splitter1.TabStop = false;
-            // 
-            // toolTip1
-            // 
-            toolTip1.ToolTipIcon = ToolTipIcon.Info;
-            // 
-            // openFilePath
-            // 
-            openFilePath.FileName = "openFileDialog1";
             // 
             // openFileDialogTask
             // 
@@ -236,14 +225,12 @@
         private GroupBox groupBoxIn;
         private GroupBox groupBox2;
         private TextBox textBoxIn;
-        private TextBox textBoxResult;
+        private TextBox textBoxOut;
         private GroupBox groupBox_BNS;
         private TextBox textBox3;
         private Button buttonOpenFile;
-        private ToolTip toolTip1;
         private Button buttonHelp;
         private Button buttonDone;
-        private OpenFileDialog openFilePath;
         private OpenFileDialog openFileDialogTask;
     }
 }

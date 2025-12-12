@@ -12,7 +12,11 @@ namespace Tyuiu.BurmistrovNS.Spriint6.Task6.V27
         DataService ds = new DataService();
         private void buttonOpenFile_Click(object sender, EventArgs e)
         {
-
+            openFileDialogTask.ShowDialog();
+            openFilePath = openFileDialogTask.FileName;
+            textBoxIn.Text = File.ReadAllText(openFilePath);
+            groupBox2.Text = groupBox2.Text + " " + openFileDialogTask.FileName;
+            buttonDone.Enabled = true;
         }
 
         private void textBoxIn_TextChanged(object sender, EventArgs e)
@@ -22,8 +26,12 @@ namespace Tyuiu.BurmistrovNS.Spriint6.Task6.V27
 
         private void buttonDone_Click(object sender, EventArgs e)
         {
-            string str = "**";
-            textBoxResult.Text = ds.CollectTextFromFile(str,openFilePath);
+            textBoxOut.Text = ds.CollectTextFromFile(openFilePath);
+        }
+
+        private void buttonHelp_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

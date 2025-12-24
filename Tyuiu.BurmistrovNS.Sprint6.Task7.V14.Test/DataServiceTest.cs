@@ -5,7 +5,17 @@ namespace Tyuiu.BurmistrovNS.Sprint6.Task7.V14.Test
     [TestClass]
     public class DataServiceTest
     {
-        
+
+        [TestMethod]
+        public void CheckedExistsFile()
+        {
+            string path = @"C:\Users\Николай\DataSprint7\OutPutFileTask7.csv";
+            FileInfo fileInfo = new FileInfo(path);
+            bool fileExists = fileInfo.Exists;
+            bool wait = true;
+            Assert.AreEqual(wait, fileExists);
+        }
+
 
         [TestMethod]
         public void CheckMatrix()
@@ -31,14 +41,6 @@ namespace Tyuiu.BurmistrovNS.Sprint6.Task7.V14.Test
             CollectionAssert.AreEqual(wait, res);
         }
 
-        [TestMethod]
-        public void CheckedExistsFile()
-        {
-            string path = @"C:\Users\Николай\DataSprint7\OutPutFileTask7.csv";
-            FileInfo fileInfo = new FileInfo(path);
-            bool fileExists = fileInfo.Exists;
-            bool wait = true;
-            Assert.AreEqual(wait, fileExists);
-        }
+        
     }
 }

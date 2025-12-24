@@ -6,23 +6,34 @@ namespace Tyuiu.BurmistrovNS.Sprint6.Task7.V14.Lib
     {
         public int[,] GetMatrix(string path)
         {
-            string[] str = File.ReadAllLines(path);
+            int rows;
+            int columns;
+            string FileData = File.ReadAllText(path);
+            FileData = FileData.Replace('\n', '\r');
 
-            int rows = str[0].Split(';').Length;
-            int columns = str.Length;
+            string[] lines = FileData.Split(new char[] { '\r' }, StringSplitOptions.RemoveEmptyEntries);
+            rows = lines.Length;
+            columns = lines[0].Split(';').Length;
 
-            int[,] matrix = new int[rows, columns];
+            int[,] array = new int[rows, columns];
 
-            for (int i = 0; i < str.Length; i++)
+            for (int i = 0; i < rows; i++)
             {
-                string strindex = str[i];
-                string[] strarray = strindex.Split(';');
-                for (int c = 0; c < str.Length; c++)
+                string[] line = lines[i].Split(';');
+                for (int j = 0; j < columns; j++)
                 {
-                    matrix[i, c] = Convert.ToInt32(strarray[c]);
+                    array[i, j] = Convert.ToInt32(line[j]);
                 }
             }
-            return matrix;
+
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+                if (array[1, j] % 2 == 0)
+                {
+                    array[1, j] = 44;
+                }
+            }
+            return array;
         }
     }
 }

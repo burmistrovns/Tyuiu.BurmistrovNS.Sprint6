@@ -4,33 +4,36 @@ namespace Tyuiu.BurmistrovNS.Sprint6.Task7.V14.Lib
 {
     public class DataService : ISprint6Task7V14
     {
-        public int len = 0;
         public int[,] GetMatrix(string path)
         {
-            string fileData = File.ReadAllText(path);
-            fileData = fileData.Replace('\n', '\r');
-            string[] lines = fileData.Split(new char[] { '\r' }, StringSplitOptions.RemoveEmptyEntries);
-            int rows = lines.Length;
-            int cols = lines[0].Split(';').Length;
-            int[,] mtrx = new int[rows, cols];
+            int rows;
+            int columns;
+            string FileData = File.ReadAllText(path);
+            FileData = FileData.Replace('\n', '\r');
 
-            for (int r = 0; r < rows; r++)
+            string[] lines = FileData.Split(new char[] { '\r' }, StringSplitOptions.RemoveEmptyEntries);
+            rows = lines.Length;
+            columns = lines[0].Split(';').Length;
+
+            int[,] array = new int[rows, columns];
+
+            for (int i = 0; i < rows; i++)
             {
-                string[] line_r = lines[r].Split(';');
-                for (int c = 0; c < cols; c++)
+                string[] line = lines[i].Split(';');
+                for (int j = 0; j < columns; j++)
                 {
-                    mtrx[r, c] = Convert.ToInt32(line_r[c]);
+                    array[i, j] = Convert.ToInt32(line[j]);
                 }
             }
-            
-            for (int i = 0; i <= len - 1; i++)
+
+            for (int j = 0; j < array.GetLength(1); j++)
             {
-                if (mtrx[2, i] % 2 == 0)
+                if (array[1, j] % 2 == 0)
                 {
-                    mtrx[2, i] = 44;
+                    array[1, j] = 44;
                 }
             }
-            return mtrx;
+            return array;
         }
     }
 }
